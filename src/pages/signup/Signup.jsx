@@ -6,17 +6,36 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const [thumbnail, setThumbnail] = useState(null)
-
+    const [thumbnailError, setThumbnailError] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(email, password, displayName)
+
       }
+
+    const handleFileChange = (e) => {
+        setThumbnail(null)
+        let selected = e.target.files[0]
+        if(!selected){
+            setThumbnailError('Please choose a file...')
+            return
+        }
+        if(!selected.type.includes('image')){
+            setThumbnailError('Please choose an image(png/jpeg)...')
+            return
+        }
+        if(selected.size > 100000){
+            setThumbnailError('Image File size must be less than 100kb...')
+            return
+        }
+        setThumbnailError(null)
+        setThumbnail(selected)
+    }
     
       return (
         <form onSubmit={handleSubmit} className="auth-form">
-          <h2>sign up</h2>
+          <h2>Sign up</h2>
           <label>
-            <span>email:</span>
+            <span>Email:</span>
             <input
               required 
               type="email" 
@@ -25,7 +44,7 @@ export default function Signup() {
             />
           </label>
           <label>
-            <span>password:</span>
+            <span>Password:</span>
             <input
               required
               type="password" 
@@ -34,7 +53,7 @@ export default function Signup() {
             />
           </label>
           <label>
-            <span>display name:</span>
+            <span>Display name:</span>
             <input
               required
               type="text" 
@@ -47,7 +66,9 @@ export default function Signup() {
             <input 
               required
               type="file" 
+              onChange={handleFileChange}
             />
+                {thumbnailError && <div className='error'>{thumbnailError}</div>}
           </label>
           <button className="btn">Sign up</button>
         </form>
