@@ -29,22 +29,15 @@ export const useSignup = () => {
       // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
 
-      if (!isCancelled) {
         setIsPending(false)
         setError(null)
-      }
+
     } 
     catch(err) {
-      if (!isCancelled) {
         setError(err.message)
         setIsPending(false)
-      }
     }
   }
-
-  useEffect(() => {
-    return () => setIsCancelled(true)
-  }, [])
 
   return { signup, error, isPending }
 }
