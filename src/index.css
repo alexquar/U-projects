@@ -31,7 +31,7 @@ ul {
   display: inline-block;
 }
 .btn {
-  background: #fff;
+  background: #f9f3f3;
   padding: 8px 12px;
   border-radius: 4px;
   color: var(--primary-color);
@@ -40,7 +40,7 @@ ul {
   border: 1px solid var(--primary-color);
 }
 .btn:hover {
-  color: #fff;
+  color: #f9f3f3;
   background-color: var(--primary-color);
 }
 
@@ -56,19 +56,19 @@ label span {
 input, textarea {
   padding: 8px 6px;
   font-size: 1em;
-  color: #777;
+  color: #070404;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #ddd;
+  border: 1px solid #ccd0a8;
   border-radius: 4px;
 }
 textarea {
   min-height: 160px;
 }
 .error {
-  color: red;
-  background: pink;
-  border: 1px solid red;
+  color: #cd4542;
+  background: #f9f3f3;
+  border: 1px solid #cd4542;
   border-radius: 4px;
   padding: 8px;
   margin: 10px 0;
