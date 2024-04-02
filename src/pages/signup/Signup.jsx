@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './Signup.css'
-
+import { useSignup } from '../../hooks/useSignup'
 export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const [thumbnail, setThumbnail] = useState(null)
     const [thumbnailError, setThumbnailError] = useState('')
+    const {isPending, error, signup} = useSignup(email, password, displayName, thumbnail)
     const handleSubmit = (e) => {
         e.preventDefault()
 
