@@ -7,10 +7,13 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Create from './pages/create/Create';
 import Signup from './pages/signup/Signup';
 import Project from './pages/project/Project';
+import Sidebar from './components/Sidebar';
 function App() {
   return (
-    <BrowserRouter>
+    
     <div className="App">
+      <BrowserRouter>
+      <Sidebar />
       <div className="container">
    <Navbar />
       <Routes>
@@ -21,8 +24,8 @@ function App() {
       <Route path="/project:id" element={<Project />} />
   </Routes>
   </div>
+  </BrowserRouter>
   </div>
-    </BrowserRouter>
   
 
   );
