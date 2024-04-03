@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 import './Create.css'
 import Select from 'react-select'
+import { timestamp } from '../../firebase/config'
+import {useAuthContext} from '../../hooks/useAuthContext'
 export default function Create() {
   const [name, setName] = useState('')
   const [details, setDetails] = useState('')
@@ -17,7 +19,7 @@ export default function Create() {
   ]
   const {documents} = useCollection('user')
   const [users, setUsers]= useState([])
-
+  const {user} = useAuthContext()
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormError(null)
@@ -29,7 +31,29 @@ export default function Create() {
       setFormError('Please select atleast one user...')
       return 
     }
-    //
+    const createdBy = {
+      displayName : user.displayName,
+      photoURL : user.photoURL,
+      id : user.uid
+    }
+    const assignedUsersList = assignedUsers.map((user)=>{
+      return {
+        displayName : user.value.displayName,
+        photoURL : user.value.photoURL,
+        id : user.value.id
+      }
+    })
+
+    const project = {
+      name,
+      details,
+      category : category.value,
+      dueDate : timestamp.fromDate(new Date(dueDate)),
+      comments : [],
+      createdBy,
+      assignedUsersList,
+    }
+    
   }
 
   useEffect(()=>{
