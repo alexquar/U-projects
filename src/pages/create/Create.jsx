@@ -75,7 +75,7 @@ export default function Create() {
       dueDate: timestamp.fromDate(new Date(dueDate)),
       comments: []
     }
-
+    console.log(project)
     addDocument(project)
     if (!response.error) {
       navigate('/')

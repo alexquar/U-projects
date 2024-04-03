@@ -28,7 +28,7 @@ export const useSignup = () => {
 
      await projectFirestore.collection('user').doc(res.user.uid).set({
       online : true,
-      photoURLUrl : imgUrl,
+      photoURL : imgUrl,
       displayName
      })
       // dispatch login action
