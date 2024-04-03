@@ -11,7 +11,7 @@ export default function Login() {
     
       return (
         <form onSubmit={handleSubmit} className="auth-form">
-          <h2>Sign up</h2>
+          <h2>Login</h2>
           <label>
             <span>email:</span>
             <input
@@ -31,7 +31,7 @@ export default function Login() {
             />
           </label>
          
-          <button className="btn">Sign up</button>
+          <button className="btn">Login</button>
         </form>
   )
 }

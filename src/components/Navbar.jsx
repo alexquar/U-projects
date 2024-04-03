@@ -1,7 +1,9 @@
 import './Navbar.css'
 import icon from '../assets/icon.png'
 import { NavLink } from 'react-router-dom'
+import {useLogout} from '../hooks/useLogout'
 export default function Navbar() {
+  const {logout, isPending} = useLogout()
     return (
       <nav className="navbar">
         <ul>
@@ -13,7 +15,8 @@ export default function Navbar() {
           <li><NavLink to="/login">Login</NavLink></li>
           <li><NavLink to="/signup">Sign up</NavLink></li>
           <li>
-            <button className="btn">Logout</button>
+          {!isPending && <button onClick={logout} className="btn">Logout</button>}
+          {isPending && <button disabled className="btn">Pending...</button>}
           </li>
         </ul>
       </nav>
