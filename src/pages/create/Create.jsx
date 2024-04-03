@@ -8,6 +8,7 @@ export default function Create() {
   const [dueDate, setDueDate] = useState('')
   const [category, setCategory] = useState('')
   const [assignedUsers, setAssignedUsers] = useState([])
+  const [formError, setFormError] = useState(null)
   const categories = [
     { value: 'development', label: 'Development' },
     { value: 'design', label: 'Design' },
@@ -19,7 +20,16 @@ export default function Create() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    setFormError(null)
+    if(!category ){
+      setFormError('Please select a category...')
+      return 
+    }
+    if(assignedUsers.length<1 ){
+      setFormError('Please select atleast one user...')
+      return 
+    }
+    //
   }
 
   useEffect(()=>{
@@ -78,7 +88,7 @@ export default function Create() {
 
 
         </label>
-
+        {formError && <div className='error'>{formError}</div>}
         <button className="btn">Add Project</button>
       </form>
     </div>
