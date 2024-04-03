@@ -10,6 +10,7 @@ import Project from './pages/project/Project';
 import Sidebar from './components/Sidebar';
 import { Navigate } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
+import OnlineUsers from './components/OnlineUsers';
 function App() {
   const {user, authIsReady} = useAuthContext()
   return (
@@ -33,6 +34,7 @@ function App() {
     {!user && <Route path="/project:id" element={<Navigate to='/login' />} /> }
   </Routes>
   </div>
+  {user && <OnlineUsers />}
   </BrowserRouter>
 }
   </div>
