@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { projectAuth } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
-
+import { projectFirestore } from '../firebase/config'
 export const useLogin = () => {
-  const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
   const { dispatch } = useAuthContext()
@@ -15,26 +14,19 @@ export const useLogin = () => {
     try {
       // login
       const res = await projectAuth.signInWithEmailAndPassword(email, password)
-
+      await projectFirestore.collection('user').doc(res.user.uid).update({online : true})
       // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
 
-      if (!isCancelled) {
         setIsPending(false)
         setError(null)
-      }
+
     } 
     catch(err) {
-      if (!isCancelled) {
-        setError(err.message)
+        setError("Incorrect credentials...")
         setIsPending(false)
-      }
     }
   }
-
-  useEffect(() => {
-    return () => setIsCancelled(true)
-  }, [])
 
   return { login, isPending, error }
 }
