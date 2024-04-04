@@ -1,7 +1,6 @@
 import { useCollection } from '../../hooks/useCollection'
 import { useState } from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext'
-
 // components
 import ProjectList from '../../components/ProjectList'
 import ProjectFilter from './ProjectFilter'
