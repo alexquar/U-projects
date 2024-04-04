@@ -5,7 +5,7 @@ export default function OnlineUsers() {
     const {documents, error} = useCollection('user')
   return (
     <div className='user-list'>
-      <h2>Oneline/Offline Users</h2>
+      <h2>Online/Offline Users</h2>
 
     {
       documents &&  documents.map(user => (
