@@ -30,8 +30,8 @@ function App() {
     {!user &&  <Route path="/create" element={<Navigate to='/login' />} /> }
     {!user &&  <Route path="/signup" element={<Signup />} /> }
     {user && <Route path="/signup" element={<Navigate to='/' />} /> }
-    {user && <Route path="/project:id" element={<Project />} /> }
-    {!user && <Route path="/project:id" element={<Navigate to='/login' />} /> }
+    {user && <Route path="/projects/:id" element={<Project />} /> }
+    {!user && <Route path="/projects/:id" element={<Navigate to='/login' />} /> }
   </Routes>
   </div>
   {user && <OnlineUsers />}
